@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.lang.*;
 
 public class FungusQuest
 {
@@ -191,12 +192,32 @@ public class FungusQuest
             s=levelDat.readLine();
             System.out.println(s);
 
+            //TextBox() initialize
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            String[] textIn;
+            textIn = new String[3];
+            textIn[0] = String.valueOf(screenX);
+            textIn[1] = String.valueOf(screenY);
+            	//Puts text of "hi" into textIn and runs TextBox
+            textIn[2] = "hi";
+            TextBox(textIn);
+
 			// Ask if over
+			System.out.println("Are you done?");
 			gameOver = keyboard.nextBoolean();
 
 			// Clear screen
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 		}
+	}
+	public static void TextBox (String [] args)
+	{
+		int screenX = Integer.parseInt(args[0]);
+		int screenY = Integer.parseInt(args[1]);
+		String text = args[2];
+		screenX *= 2;
+		int tWidth = screenX-4;
+		int lines = (text.length()/tWidth)+1;
 	}
 }
 
